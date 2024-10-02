@@ -89,7 +89,7 @@ function resetTimer() {
     pauseButton.disabled = true;
     pauseButton.textContent = 'Pause';
     isPaused = false;
-    document.title = 'Countdown Timer';
+    document.title = 'Simple Timer';
 }
 
 function formatTime(time) {
