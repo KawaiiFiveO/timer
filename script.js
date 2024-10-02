@@ -15,6 +15,9 @@ const secondsInput = document.getElementById('seconds');
 startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', togglePauseResume);
 resetButton.addEventListener('click', resetTimer);
+hoursInput.addEventListener('input', updateDisplay); // Update display when typing
+minutesInput.addEventListener('input', updateDisplay);
+secondsInput.addEventListener('input', updateDisplay);
 
 function startTimer() {
     if (isPaused) {
@@ -86,9 +89,21 @@ function resetTimer() {
     pauseButton.disabled = true;
     pauseButton.textContent = 'Pause';
     isPaused = false;
-    document.title = 'Simple Timer';
+    document.title = 'Countdown Timer';
 }
 
 function formatTime(time) {
     return time < 10 ? `0${time}` : time;
+}
+
+function updateDisplay() {
+    let hours = parseInt(hoursInput.value) || 0;
+    let minutes = parseInt(minutesInput.value) || 0;
+    let seconds = parseInt(secondsInput.value) || 0;
+
+    const formattedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+    timerDisplay.textContent = formattedTime;
+
+    // Update the tab title as the user types
+    document.title = `Time Set: ${formattedTime}`;
 }
